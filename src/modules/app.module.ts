@@ -1,16 +1,18 @@
-import {ConfigModule} from '@nestjs/config';
+import {DatabaseModule} from '@modules/database/database.module';
+import {GatesModule} from '@modules/gates/gates.module';
 import {Module} from '@nestjs/common';
-import {DatabaseModule} from "@modules/database/database.module";
+import {ConfigModule} from '@nestjs/config';
 
 @Module({
   imports: [
     ConfigModule.forRoot({isGlobal: true}),
     DatabaseModule,
+    GatesModule
   ],
   exports: [ConfigModule],
   providers: [
-    ConfigModule,
-  ],
+    ConfigModule
+  ]
 })
 export class AppModule {
 }

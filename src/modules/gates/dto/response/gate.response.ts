@@ -1,24 +1,25 @@
 import {ApiProperty} from '@nestjs/swagger';
-import {RowDto} from '@shared/dto';
 import {Expose} from 'class-transformer';
 
-export class GatesResponseDto<T = GatesResponseDto<Record<string, unknown>>> extends RowDto<T> {
+export class GatesResponseDto<T = GatesResponseDto<Record<string, unknown>>> {
   @Expose()
-  @ApiProperty({type: Number, description: 'Name'})
+  @ApiProperty({type: Number, description: 'State gate'})
   state: number;
 
   @Expose()
-  @ApiProperty({type: String, description: 'Name'})
+  @ApiProperty({type: String, description: 'Name gate'})
   name: string;
 
- /* @Expose()
-  @Type(() => MapCoordsDataDto)
-  @ApiPropertyOptional({type: Object, description: 'Map route data', isArray: true})
-  mapRouteData?: MapCoordsDataDto[];
+  @Expose()
+  @ApiProperty({type: String, description: 'Device id'})
+  deviceId: string;
 
   @Expose()
-  @ApiPropertyOptional({type: Number, description: 'Base price'})
-  @Transform((value) => value / 100) // Transform price from cent to dollar
-  basePrice?: number;*/
+  @ApiProperty({type: Number, description: 'Latitude gate'})
+  lat: number;
+
+  @Expose()
+  @ApiProperty({type: Number, description: 'Longitude gate'})
+  lng: number;
 
 }

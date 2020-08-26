@@ -13,8 +13,8 @@ export class GatesEntity extends RowEntity<GatesEntity> {
   state?: number;
 
   @Column({type: 'decimal', nullable: true})
-  lat?: string;
+  lat?: number;
 
   @Column({type: 'decimal', nullable: true})
-  lng?: string;
+  lng?: number;
 }

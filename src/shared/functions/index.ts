@@ -1,0 +1,1 @@
+export {getManyResponseFor} from './getManyResponseFor';

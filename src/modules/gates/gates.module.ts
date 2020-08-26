@@ -11,5 +11,5 @@ import {TypeOrmModule} from '@nestjs/typeorm';
   imports: [TypeOrmModule.forFeature([GatesRepository]), ConfigModule],
   exports: [GatesService]
 })
-export class EventLinkModule {
+export class GatesModule {
 }
