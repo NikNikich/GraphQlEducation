@@ -1,6 +1,8 @@
 import {GatesEntity} from '@modules/entities';
 import {CreateGateDto} from '@modules/gates/dto/request/create_gate.dto';
+import {SateUpdateDto} from '@modules/gates/dto/request/state_update.dto';
 import {UpdateGateDto} from '@modules/gates/dto/request/update_gate.dto';
+import {GatesGateway} from '@modules/gates/gates.gateway';
 import {GatesRepository} from '@modules/gates/repository/gates.repository';
 import {Injectable} from '@nestjs/common';
 import {merge} from 'lodash';
@@ -8,6 +10,7 @@ import {merge} from 'lodash';
 @Injectable()
 export class GatesService {
   constructor(
+    private readonly gatesGateway: GatesGateway,
     private readonly gatesRepository: GatesRepository
   ) {
   }
@@ -27,11 +30,13 @@ export class GatesService {
     return await this.gatesRepository.save(merge(gate, data));
   }
 
-  async updateState(deviceId: string, data: UpdateGateDto): Promise<GatesEntity> {
+  async updateState(deviceId: string, data: SateUpdateDto): Promise<GatesEntity> {
     let gate = await this.gatesRepository.findOne({where: {deviceId}});
     if (!gate) {
       gate = await this.createGate({deviceId});
     }
-    return await this.gatesRepository.save(merge(gate, data));
+    const saveGate = await this.gatesRepository.save(merge(gate, data));
+    await this.gatesGateway.handleMessage({deviceId, state: data.state});
+    return saveGate;
   }
 }

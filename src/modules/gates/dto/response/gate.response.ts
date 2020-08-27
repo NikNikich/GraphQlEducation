@@ -1,7 +1,8 @@
 import {ApiProperty} from '@nestjs/swagger';
+import {ConstructableDto} from '@shared/dto';
 import {Expose} from 'class-transformer';
 
-export class GatesResponseDto<T = GatesResponseDto<Record<string, unknown>>> {
+export class GatesResponseDto extends ConstructableDto {
   @Expose()
   @ApiProperty({type: Number, description: 'State gate'})
   state: number;
