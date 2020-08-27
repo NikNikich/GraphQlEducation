@@ -1,8 +1,4 @@
-FROM node:12-alpine
-
-# install vim
-RUN apk add --update
-RUN apk add vim
+FROM node:13-alpine
 
 # copy build
 WORKDIR /devel
