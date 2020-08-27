@@ -11,7 +11,8 @@ services:
       - DATABASE_PASSWORD=${DATABASE_PASSWORD}
       - DATABASE_USER=${DATABASE_USER}
       - DATABASE_SYNC=${DATABASE_SYNC}
-     
+      - DEVICE_KEY=${DEVICE_KEY}
+      - WEBSOCKET_EVENT=${WEBSOCKET_EVENT}
     ports:
       - ${PORT}:3000
     restart: always
