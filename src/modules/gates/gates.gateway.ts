@@ -15,11 +15,12 @@ export class GatesGateway implements OnGatewayInit, OnGatewayConnection, OnGatew
   @WebSocketServer()
   server: Server;
 
+  private event = process.env.WEBSOCKET_EVENT;
   private logger: Logger = new Logger('GateGateway');
 
   @SubscribeMessage('update_status')
   handleMessage(payload: GatewayResponseDto): void {
-    this.server.emit('update_status', payload);
+    this.server.emit(this.event, payload);
   }
 
   afterInit(server: Server) {
