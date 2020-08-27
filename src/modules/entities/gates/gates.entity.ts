@@ -1,7 +1,7 @@
 import {Column, Entity} from 'typeorm/index';
 import {RowEntity} from '../shared';
 
-@Entity('event')
+@Entity('gate')
 export class GatesEntity extends RowEntity<GatesEntity> {
   @Column({type: 'varchar', nullable: false, length: 255, unique: true})
   deviceId: string;
