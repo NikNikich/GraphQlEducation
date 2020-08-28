@@ -19,7 +19,6 @@ export class GatesController {
   ) {
   }
 
-
   @Get()
   @ApiOperation({summary: 'Get list gates'})
   @ApiOkResponse({type: GatesResponseDto, isArray: true})
