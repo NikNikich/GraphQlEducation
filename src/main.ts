@@ -16,7 +16,6 @@ const initDocumentation = (app: INestApplication, appPrefix: string, appHost: st
           .setVersion('1.0')
           .setBasePath(appPrefix)
           .addServer(appHost)
-          .addBearerAuth()
           .build();
   const document = SwaggerModule.createDocument(app, docOptions);
   SwaggerModule.setup('api', app, document);
