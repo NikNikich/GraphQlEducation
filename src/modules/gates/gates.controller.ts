@@ -5,7 +5,7 @@ import {GatesResponseDto} from '@modules/gates/dto/response/gate.response';
 import {GatesService} from '@modules/gates/gates.service';
 import {ApiKeyGuard} from '@modules/gates/guard/api_key.guard';
 import {Body, Controller, Get, Param, Post, Put, UseGuards} from '@nestjs/common';
-import {ApiCreatedResponse, ApiOkResponse, ApiOperation, ApiTags} from '@nestjs/swagger';
+import {ApiCreatedResponse, ApiHeader, ApiOkResponse, ApiOperation, ApiTags} from '@nestjs/swagger';
 import {SuccessDto} from '@shared/dto';
 import {ListResponseDto} from '@shared/dto/list.response.dto';
 import {mapToListResponseDto} from '@shared/functions/map-to-list-response-dto';
@@ -19,6 +19,7 @@ export class GatesController {
   ) {
   }
 
+
   @Get()
   @ApiOperation({summary: 'Get list gates'})
   @ApiOkResponse({type: GatesResponseDto, isArray: true})
@@ -29,6 +30,7 @@ export class GatesController {
 
   @Post()
   @UseGuards(ApiKeyGuard)
+  @ApiHeader({name: 'api_key'})
   @ApiOperation({summary: 'Create new Gate'})
   @ApiCreatedResponse({type: SuccessDto})
   async createGate(
@@ -40,6 +42,7 @@ export class GatesController {
 
   @Put(':deviceId')
   @UseGuards(ApiKeyGuard)
+  @ApiHeader({name: 'api_key'})
   @ApiOperation({summary: 'Update Gate'})
   @ApiOkResponse({type: GatesResponseDto})
   async updateGate(
@@ -51,6 +54,7 @@ export class GatesController {
 
   @Post(':deviceId/state')
   @UseGuards(ApiKeyGuard)
+  @ApiHeader({name: 'api_key'})
   @ApiOperation({summary: 'Update state or create gate'})
   @ApiCreatedResponse({type: GatesResponseDto})
   async updateOrCreateByState(
