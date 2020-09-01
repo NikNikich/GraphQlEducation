@@ -14,7 +14,7 @@ export class UpdateGateDto extends ConstructableDto {
   @IsEnum(GATE_STATUSES)
   @IsOptional()
   @IsNumber()
-  @ApiPropertyOptional({type: String, description: 'State gate'})
+  @ApiPropertyOptional({type: Number, description: 'State gate'})
   state?: number;
 
   @IsOptional()
@@ -22,7 +22,7 @@ export class UpdateGateDto extends ConstructableDto {
   @Type(() => Number)
   @Min(-180)
   @Max(180)
-  @ApiPropertyOptional({type: String, description: 'Latitude gate'})
+  @ApiPropertyOptional({type: Number, description: 'Latitude gate'})
   lat?: number;
 
   @IsOptional()
@@ -30,6 +30,6 @@ export class UpdateGateDto extends ConstructableDto {
   @Type(() => Number)
   @Min(-180)
   @Max(180)
-  @ApiPropertyOptional({type: String, description: 'Longitude gate'})
+  @ApiPropertyOptional({type: Number, description: 'Longitude gate'})
   lng?: number;
 }
