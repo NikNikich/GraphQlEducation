@@ -7,6 +7,6 @@ export class SateUpdateDto extends ConstructableDto {
   @IsNotEmpty()
   @IsEnum(GATE_STATUSES)
   @IsNumber()
-  @ApiPropertyOptional({type: Number, description: 'State gate'})
+  @ApiPropertyOptional({enum: GATE_STATUSES, description: 'State gate'})
   state: number;
 }
