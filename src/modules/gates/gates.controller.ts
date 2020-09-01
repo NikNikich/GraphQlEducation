@@ -29,7 +29,7 @@ export class GatesController {
 
   @Post()
   @UseGuards(ApiKeyGuard)
-  @ApiHeader({name: 'api_key'})
+  @ApiHeader({name: 'api-key'})
   @ApiOperation({summary: 'Create new Gate'})
   @ApiCreatedResponse({type: SuccessDto})
   async createGate(
@@ -41,7 +41,7 @@ export class GatesController {
 
   @Put(':deviceId')
   @UseGuards(ApiKeyGuard)
-  @ApiHeader({name: 'api_key'})
+  @ApiHeader({name: 'api-key'})
   @ApiOperation({summary: 'Update Gate'})
   @ApiOkResponse({type: GatesResponseDto})
   async updateGate(
@@ -53,7 +53,7 @@ export class GatesController {
 
   @Post(':deviceId/state')
   @UseGuards(ApiKeyGuard)
-  @ApiHeader({name: 'api_key'})
+  @ApiHeader({name: 'api-key'})
   @ApiOperation({summary: 'Update state or create gate'})
   @ApiCreatedResponse({type: GatesResponseDto})
   async updateOrCreateByState(

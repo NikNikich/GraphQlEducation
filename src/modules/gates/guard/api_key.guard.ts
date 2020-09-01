@@ -1,4 +1,6 @@
 import {CanActivate, ExecutionContext, Injectable} from '@nestjs/common';
+import {get} from "lodash";
+
 
 @Injectable()
 export class ApiKeyGuard implements CanActivate {
@@ -7,7 +9,7 @@ export class ApiKeyGuard implements CanActivate {
 
   canActivate(context: ExecutionContext): boolean {
     const request = context.switchToHttp().getRequest();
-    const apiKeyHeader = request.headers.api_key;
+    const apiKeyHeader = get(request.headers, "api-key")
     return (apiKeyHeader === process.env.DEVICE_KEY);
   }
 }
