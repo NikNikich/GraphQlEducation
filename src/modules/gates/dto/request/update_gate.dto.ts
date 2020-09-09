@@ -1,4 +1,4 @@
-import {GATE_STATUSES} from '@modules/gates/interface';
+import {GATE_STATUSES_NUMBER} from '@modules/gates/interface';
 import {ApiPropertyOptional} from '@nestjs/swagger';
 import {ConstructableDto} from '@shared/dto';
 import {Type} from 'class-transformer';
@@ -11,10 +11,10 @@ export class UpdateGateDto extends ConstructableDto {
   @ApiPropertyOptional({type: String, description: 'Name gate'})
   name?: string;
 
-  @IsEnum(GATE_STATUSES)
+  @IsEnum(GATE_STATUSES_NUMBER)
   @IsOptional()
   @IsNumber()
-  @ApiPropertyOptional({type:Number, description: 'State gate'})
+  @ApiPropertyOptional({type:String, description: 'State gate'})
   state?: number;
 
   @IsOptional()
