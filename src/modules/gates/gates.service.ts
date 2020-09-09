@@ -1,3 +1,4 @@
+import {errors} from '@errors/errors';
 import {GatesEntity} from '@modules/entities';
 import {CreateGateDto} from '@modules/gates/dto/request/create_gate.dto';
 import {SateUpdateDto} from '@modules/gates/dto/request/state_update.dto';
@@ -36,7 +37,11 @@ export class GatesService {
       gate = await this.createGate({deviceId});
     }
     const saveGate = await this.gatesRepository.save(merge(gate, data));
-    await this.gatesGateway.handleMessage({deviceId, state: data.state});
+    try {
+      await this.gatesGateway.handleMessage({deviceId, state: data.state});
+    } catch(e){
+      throw errors.GateAlreadyExists;
+    }
     return saveGate;
   }
 }
