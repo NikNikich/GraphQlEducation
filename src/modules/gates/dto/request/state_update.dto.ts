@@ -6,6 +6,6 @@ import {IsEnum, IsNotEmpty} from 'class-validator';
 export class SateUpdateDto extends ConstructableDto {
   @IsNotEmpty()
   @IsEnum(GATE_STATUSES)
-  @ApiPropertyOptional({type: Number, description: 'State gate'})
+  @ApiPropertyOptional({type: String, description: 'State gate'})
   state: number;
 }
