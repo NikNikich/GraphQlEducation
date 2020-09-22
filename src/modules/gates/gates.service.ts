@@ -7,6 +7,7 @@ import {GatesGateway} from '@modules/gates/gates.gateway';
 import {GatesRepository} from '@modules/gates/repository/gates.repository';
 import {Injectable} from '@nestjs/common';
 import {merge} from 'lodash';
+import {v4 as uuidV4} from 'uuid';
 
 @Injectable()
 export class GatesService {
@@ -39,9 +40,19 @@ export class GatesService {
     const saveGate = await this.gatesRepository.save(merge(gate, data));
     try {
       await this.gatesGateway.handleMessage({deviceId, state: data.state});
-    } catch(e){
+    } catch (e) {
       throw errors.GateAlreadyExists;
     }
     return saveGate;
+  }
+
+  async getNewUUID(): Promise<string> {
+    let newUuid = '';
+    let gate: GatesEntity;
+    do {
+      newUuid = uuidV4();
+      gate = await this.gatesRepository.findOne({where: {deviceId: newUuid}});
+    } while (gate);
+    return newUuid;
   }
 }
