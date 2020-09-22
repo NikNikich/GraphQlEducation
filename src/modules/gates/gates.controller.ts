@@ -2,6 +2,7 @@ import {CreateGateDto} from '@modules/gates/dto/request/create_gate.dto';
 import {SateUpdateDto} from '@modules/gates/dto/request/state_update.dto';
 import {UpdateGateDto} from '@modules/gates/dto/request/update_gate.dto';
 import {GatesResponseDto} from '@modules/gates/dto/response/gate.response';
+import {UUIDResponseDto} from '@modules/gates/dto/response/uuid.response';
 import {GatesService} from '@modules/gates/gates.service';
 import {ApiKeyGuard} from '@modules/gates/guard/api_key.guard';
 import {Body, Controller, Get, Param, Post, Put, UseGuards} from '@nestjs/common';
@@ -61,5 +62,13 @@ export class GatesController {
   ): Promise<Boolean> {
     await this.gatesService.updateState(deviceId, stateUpdate);
     return true;
+  }
+
+  @Get('/newDeviceId')
+  @ApiOperation({summary: 'Get list gates'})
+  @ApiOkResponse({type: UUIDResponseDto})
+  async getNewDeviceUUID(): Promise<UUIDResponseDto> {
+    const uuid = await this.gatesService.getNewUUID();
+    return mapToResponseDto(UUIDResponseDto, {id: uuid});
   }
 }
