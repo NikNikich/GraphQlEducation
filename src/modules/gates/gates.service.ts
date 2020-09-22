@@ -47,12 +47,11 @@ export class GatesService {
   }
 
   async getNewUUID(): Promise<string> {
-    let newUuid = '';
-    let gate: GatesEntity;
-    do {
-      newUuid = uuidV4();
-      gate = await this.gatesRepository.findOne({where: {deviceId: newUuid}});
-    } while (gate);
+    const newUuid = uuidV4();
+    const gate = await this.gatesRepository.findOne({where: {deviceId: newUuid}});
+    if (gate) {
+      return this.getNewUUID();
+    }
     return newUuid;
   }
 }
