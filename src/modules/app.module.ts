@@ -2,6 +2,7 @@ import {DatabaseModule} from '@modules/database/database.module';
 import {GatesModule} from '@modules/gates/gates.module';
 import {Module} from '@nestjs/common';
 import {ConfigModule} from '@nestjs/config';
+import {GraphQLModule} from '@nestjs/graphql';
 
 @Module({
   imports: [
