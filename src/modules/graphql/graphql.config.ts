@@ -1,9 +1,10 @@
 import { GqlModuleOptions } from '@nestjs/graphql';
 
-const enablePlayground = process.env.GRAPHQL_ENABLE_PLAYGROUND === 'true';
+const enablePlayground = true;
 const playgroundEndpoint =
-  process.env.GRAPHQL_PLAYGROUND_ENDPOINT || '/graphql';
-const debugMode = process.env.GRAPHQL_DEBUG_MODE === 'true';
+  process.env.GRAPHQL_PLAYGROUND_ENDPOINT || 'graphql12';
+//const debugMode = process.env.GRAPHQL_DEBUG_MODE === 'true';
+const debugMode =true;
 
 export const playgroundConfig = {
   introspection: enablePlayground,

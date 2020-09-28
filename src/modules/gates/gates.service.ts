@@ -24,18 +24,18 @@ export class GatesService {
   async createGate(data: CreateGateDto): Promise<GatesEntity> {
     await this.gatesRepository.findByDeviceIdAndReject(data.deviceId);
     const newGate = new GatesEntity(data);
-    return await this.gatesRepository.save(newGate);
+    return  this.gatesRepository.save(newGate);
   }
 
   async updateGate(deviceId: string, data: UpdateGateDto): Promise<GatesEntity> {
-    let gate = await this.gatesRepository.findByDeviceIdOrReject(deviceId);
-    return await this.gatesRepository.save(merge(gate, data));
+    const gate = await this.gatesRepository.findByDeviceIdOrReject(deviceId);
+    return this.gatesRepository.save(merge(gate, data));
   }
 
   async updateState(deviceId: string, data: SateUpdateDto): Promise<GatesEntity> {
     let gate = await this.gatesRepository.findOne({where: {deviceId}});
     if (!gate) {
-      gate = await this.createGate({deviceId});
+      gate = await  this.createGate({deviceId});
     }
     const saveGate = await this.gatesRepository.save(merge(gate, data));
     try {
